@@ -3,7 +3,13 @@
   "author": "Filip",
   "editor": "wokwi",
   "parts": [
-    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
     {
       "type": "wokwi-led",
       "id": "led1",
@@ -32,7 +38,20 @@
       "left": -103.38,
       "attrs": {}
     },
-    { "type": "wokwi-logic-analyzer", "id": "logic1", "top": -182.05, "left": 134.4, "attrs": {} }
+    {
+      "type": "wokwi-logic-analyzer",
+      "id": "logic1",
+      "top": -182.05,
+      "left": 134.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -199.65364583333334,
+      "left": -330.8333333333333,
+      "attrs": {}
+    }
   ],
   "connections": [
     [ "esp:TX", "$serialMonitor:RX", "", [] ],
@@ -49,7 +68,11 @@
     [ "logic1:D1", "esp:12", "blue", [ "v0" ] ],
     [ "logic1:D2", "esp:14", "blue", [ "v0" ] ],
     [ "logic1:D3", "esp:33", "blue", [ "v0" ] ],
-    [ "logic1:D0", "esp:2", "green", [ "h0" ] ]
+    [ "logic1:D0", "esp:2", "green", [ "h0" ] ],
+    [ "ultrasonic1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "ultrasonic1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "ultrasonic1:TRIG", "esp:5", "green", [ "v0" ] ],
+    [ "ultrasonic1:ECHO", "esp:18", "green", [ "v0" ] ]
   ],
   "dependencies": {}
 }

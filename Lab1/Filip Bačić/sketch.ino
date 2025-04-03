@@ -1,15 +1,17 @@
 #include <Arduino.h>
 #include <Ticker.h>
 
-// Pinovi i parametri
+// Definicija pinova
 #define BTN1_PIN 12
 #define BTN2_PIN 14
-#define LED_PIN  2
-#define SENSOR_PIN  33
+#define LED_PIN 2
+#define SENSOR_PIN 33
+#define TRIG_PIN 5
+#define ECHO_PIN 18
 #define SERIAL_BAUD_RATE 115200
 #define SERIAL_RX_PIN 16
 
-// Volatile varijable za praćenje stanja prekida
+// Varijable
 volatile bool btn1_pressed = false;
 volatile bool btn2_pressed = false;
 volatile bool sensor_triggered = false;
@@ -21,113 +23,128 @@ unsigned long lastBtn1Press = 0;
 unsigned long lastBtn2Press = 0;
 const unsigned long debounceDelay = 200;
 
-Ticker timer;  // Timer za intervale
+Ticker timer;
+bool ledSensorState = false;
 
-// Prioriteti prekida
-#define BTN1_INTR_PRIORITY 10
-#define BTN2_INTR_PRIORITY 20
-#define SENSOR_INTR_PRIORITY 30
-#define TIMER_INTR_PRIORITY 40
+unsigned long lastSensorBlinkTime = 0;
+const unsigned long sensorBlinkInterval = 200;
 
-// ISR funkcija za tipku 1
+// Funkcija za upravljanje prekidom kada je tipkalo 1 pritisnuto
 void IRAM_ATTR btn1ISR() {
     unsigned long currentMillis = millis();
     if (currentMillis - lastBtn1Press > debounceDelay) {
-        noInterrupts();
         btn1_pressed = true;
         lastBtn1Press = currentMillis;
-        interrupts();
     }
 }
 
-// ISR funkcija za tipku 2
+// Funkcija za upravljanje prekidom kada je tipkalo 2 pritisnuto
 void IRAM_ATTR btn2ISR() {
     unsigned long currentMillis = millis();
     if (currentMillis - lastBtn2Press > debounceDelay) {
-        noInterrupts();
         btn2_pressed = true;
         lastBtn2Press = currentMillis;
-        interrupts();
     }
 }
 
-// ISR funkcija za PIR senzor
+// Funkcija za upravljanje prekidom kada je senzor aktiviran
 void IRAM_ATTR sensorISR() {
-    noInterrupts();
     sensor_triggered = true;
-    interrupts();
 }
 
-// ISR funkcija za timer
+// Funkcija koja se poziva na svakih 1 sekundu (TIMER1) za blikanje LED-a
 void IRAM_ATTR onTimer() {
-    noInterrupts();
     timer_triggered = true;
-    digitalWrite(LED_PIN, !digitalRead(LED_PIN));  // Prebaci LED
-    interrupts();
+    digitalWrite(LED_PIN, !digitalRead(LED_PIN)); // Preklopi stanje LED-a
 }
 
-// ISR funkcija za serijski port
+// Funkcija za upravljanje prekidom serijske komunikacije
 void IRAM_ATTR serialISR() {
     if (Serial.available()) {
         received_char = Serial.read();
-        noInterrupts();
         serial_received = true;
-        interrupts();
     }
+}
+
+// Funkcija za mjerenje udaljenosti pomoću HC-SR04 senzora
+float measureDistance() {
+    digitalWrite(TRIG_PIN, LOW);
+    delayMicroseconds(2);
+    digitalWrite(TRIG_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIG_PIN, LOW);
+
+    long duration = pulseIn(ECHO_PIN, HIGH, 30000);
+    if (duration == 0) return -1;
+
+    float distance = duration * 0.034 / 2;
+    return distance;
+}
+
+// Funkcija za treptanje LED diode kada je udaljenost manja od 100 cm
+void blinkSensorLED() {
+    ledSensorState = !ledSensorState;
+    digitalWrite(LED_PIN, ledSensorState);
 }
 
 void setup() {
-    Serial.begin(SERIAL_BAUD_RATE);  // Pokreni serijsku komunikaciju
-    pinMode(BTN1_PIN, INPUT_PULLUP);  // Tipka 1 kao ulaz s pull-up otpornikom
-    pinMode(BTN2_PIN, INPUT_PULLUP);  // Tipka 2 kao ulaz s pull-up otpornikom
-    pinMode(LED_PIN, OUTPUT);         // LED kao izlaz
-    pinMode(SENSOR_PIN, INPUT);       // PIR senzor kao ulaz
+    Serial.begin(SERIAL_BAUD_RATE);
+    pinMode(BTN1_PIN, INPUT_PULLUP); // Postavljanje pinova za tipkala
+    pinMode(BTN2_PIN, INPUT_PULLUP);
+    pinMode(LED_PIN, OUTPUT); // Postavljanje pina za LED diodu
+    pinMode(SENSOR_PIN, INPUT); // Postavljanje pina za PIR senzor
+    pinMode(TRIG_PIN, OUTPUT); // Postavljanje pina za HC-SR04 trig
+    pinMode(ECHO_PIN, INPUT); // Postavljanje pina za HC-SR04 echo
 
-    // Postavi prekide za ESP32
-    attachInterrupt(BTN1_PIN, btn1ISR, RISING);
-    attachInterrupt(BTN2_PIN, btn2ISR, RISING);
-    attachInterrupt(SENSOR_PIN, sensorISR, CHANGE);  // Detekcija promjena na PIR senzoru
-    attachInterrupt(SERIAL_RX_PIN, serialISR, FALLING);
+    attachInterrupt(BTN1_PIN, btn1ISR, RISING); // Postavljanje prekida za tipkalo 1
+    attachInterrupt(BTN2_PIN, btn2ISR, RISING); // Postavljanje prekida za tipkalo 2
+    attachInterrupt(SENSOR_PIN, sensorISR, CHANGE); // Postavljanje prekida za PIR senzor
+    attachInterrupt(SERIAL_RX_PIN, serialISR, FALLING); // Postavljanje prekida za serijsku komunikaciju
 
-    // Timer aktivacija svakih 1 sekundu
-    timer.attach(1.0, onTimer);
+    timer.attach(1.0, onTimer); // Postavljanje timera koji poziva onTimer funkciju svake sekunde
 }
 
 void loop() {
-    // Obrada tipki
+    // Obrada događaja kada je tipkalo 1 pritisnuto
     if (btn1_pressed) {
         btn1_pressed = false;
-        // Tipka 1: togglaj LED
-        digitalWrite(LED_PIN, !digitalRead(LED_PIN));  // Toglaj LED
+        digitalWrite(LED_PIN, !digitalRead(LED_PIN)); // Preklopi stanje LED-a
         Serial.println("Button 1 Pressed: LED toggled");
     }
 
+    // Obrada događaja kada je tipkalo 2 pritisnuto
     if (btn2_pressed) {
         btn2_pressed = false;
-        // Tipka 2: uključi LED
-        digitalWrite(LED_PIN, HIGH);  // LED on
+        digitalWrite(LED_PIN, HIGH); // Uključi LED
         Serial.println("Button 2 Pressed: LED ON");
     }
 
-    // Obrada PIR senzora
+    // Obrada događaja kada je PIR senzor aktiviran
     if (sensor_triggered) {
         sensor_triggered = false;
-        // Detekcija pokreta
         Serial.println("Motion Detected by PIR Sensor");
     }
 
-    // Obrada timera
+    // Obrada događaja kada je timer aktiviran
     if (timer_triggered) {
         timer_triggered = false;
-        // Timer: svaki put kad timer istekne
         Serial.println("Timer Interrupt Triggered");
     }
 
-    // Obrada serijskog porta
+    // Obrada podataka sa serijskog porta
     if (serial_received) {
         serial_received = false;
-        // Primi podatke sa serijskog porta
         Serial.print("Received from Serial: ");
         Serial.println(received_char);
+    }
+
+    // Mjerenje udaljenosti pomoću HC-SR04
+    float distance = measureDistance();
+    if (distance > 0 && distance < 100) {
+        unsigned long currentMillis = millis();
+        if (currentMillis - lastSensorBlinkTime >= sensorBlinkInterval) {
+            blinkSensorLED(); // Trepće LED ako je udaljenost manja od 100 cm
+            lastSensorBlinkTime = currentMillis;
+        }
     }
 }
