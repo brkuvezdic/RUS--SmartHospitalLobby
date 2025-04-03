@@ -15,18 +15,31 @@
     {
       "type": "wokwi-resistor",
       "id": "r1",
-      "top": 42.35,
-      "left": 307.2,
+      "top": 61.55,
+      "left": 297.6,
       "attrs": { "value": "0" }
     },
     { "type": "wokwi-buzzer", "id": "buzzer1", "top": -93.6, "left": 97.8, "attrs": {} },
-    { "type": "wokwi-led", "id": "led1", "top": -150, "left": 50, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -147.6,
+      "left": 51.8,
+      "attrs": { "color": "red" }
+    },
     {
       "type": "wokwi-pushbutton",
       "id": "btn1",
       "top": 100,
       "left": 100,
       "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 100,
+      "left": 150,
+      "attrs": { "color": "green" }
     }
   ],
   "connections": [
@@ -43,8 +56,11 @@
     [ "led1:C", "uno:GND", "black", [ "v0" ] ],
     [ "btn1:1", "uno:GND", "black", [ "v0" ] ],
     [ "btn1:2", "uno:5", "green", [ "v0" ] ],
+    [ "btn2:1", "uno:GND", "black", [ "v0" ] ],
+    [ "btn2:2", "uno:6", "green", [ "v0" ] ],
     [ "buzzer1:1", "uno:GND.1", "green", [ "v0" ] ],
-    [ "buzzer1:2", "uno:3", "green", [ "v0" ] ]
+    [ "buzzer1:2", "uno:1", "green", [ "v0" ] ],
+    [ "pir1:GND", "uno:GND.1", "black", [ "v0" ] ]
   ],
   "dependencies": {}
 }
