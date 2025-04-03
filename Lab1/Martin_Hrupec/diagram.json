@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "author": "Martin Hrupec",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-led", "id": "led", "top": -50, "left": 100, "attrs": { "color": "red" } },
+    { "type": "wokwi-pushbutton", "id": "button1", "top": 50, "left": -50, "attrs": { "color": "green", "xray": "1" } },
+    { "type": "wokwi-pushbutton", "id": "button2", "top": 100, "left": -50, "attrs": { "color": "green", "xray": "1" } },
+    { "type": "wokwi-potentiometer", "id": "sensor", "top": 150, "left": 0, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "led:A", "esp:2", "green", [ "v0" ] ],
+    [ "led:C", "esp:GND.2", "green", [ "v0" ] ],
+    [ "esp:18", "button1:2.r", "green", [ "v0" ] ],
+    [ "button1:1.r", "esp:GND.2", "green", [ "v0" ] ],
+    [ "esp:19", "button2:2.r", "green", [ "h0" ] ],
+    [ "button2:1.r", "esp:GND.2", "green", [ "v0" ] ],
+    [ "sensor:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "sensor:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "sensor:OUT", "esp:34", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
