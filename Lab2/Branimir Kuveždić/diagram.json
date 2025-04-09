@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "author": "Branimir Kuveždić",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -250, "left": -50, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -32.4,
+      "left": 71,
+      "attrs": { "color": "blue", "flip": "" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "alertLed",
+      "top": -13.2,
+      "left": 157.4,
+      "attrs": { "color": "red", "flip": "" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -350,
+      "left": 230,
+      "rotate": 270,
+      "attrs": { "color": "grey", "xray": "1" }
+    },
+    {
+      "type": "wokwi-photoresistor",
+      "id": "ldr1",
+      "top": 70,
+      "left": -100,
+      "attrs": { "invert": "0" }
+    },
+    {
+      "type": "wokwi-photoresistor",
+      "id": "tempSensor",
+      "top": 70,
+      "left": 150,
+      "attrs": { "invert": "0" }
+    }
+  ],
+  "connections": [
+    [ "led1:A", "uno:9", "red", [ "v0" ] ],
+    [ "led1:C", "uno:GND", "blue", [ "v0" ] ],
+    [ "alertLed:A", "uno:13", "red", [ "v0" ] ],
+    [ "alertLed:C", "uno:GND", "blue", [ "v0" ] ],
+    [ "btn1:2.l", "uno:2", "green", [ "v0" ] ],
+    [ "btn1:1.l", "uno:GND", "green", [ "v0" ] ],
+    [ "ldr1:OUT", "uno:A0", "orange", [ "v0" ] ],
+    [ "ldr1:VCC", "uno:5V", "orange", [ "v0" ] ],
+    [ "ldr1:GND", "uno:GND", "blue", [ "v0" ] ],
+    [ "tempSensor:OUT", "uno:A1", "orange", [ "v0" ] ],
+    [ "tempSensor:VCC", "uno:5V", "orange", [ "v0" ] ],
+    [ "tempSensor:GND", "uno:GND", "blue", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
