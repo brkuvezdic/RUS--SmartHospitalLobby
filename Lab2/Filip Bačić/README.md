@@ -29,7 +29,7 @@ Ovaj Arduino projekt prikazuje upravljanje potrošnjom energije pomoću različi
 
 ## 🔌 Shema spoja
 
-- LED (npr. narančasta) → Pin 13 (s otpornikom) i GND
+- LED (narančasta) → Pin 13 i GND
 - Tipkalo → Pin 2 i GND (koristi `INPUT_PULLUP`)
 
 ## 💻 Testirano u
@@ -39,7 +39,7 @@ Ovaj Arduino projekt prikazuje upravljanje potrošnjom energije pomoću različi
 
 ## 📁 Sadržaj repozitorija
 
-- `power_management_system.ino`
+- `sketch.ino`
 - `diagram.json` (Wokwi shema)
 - `README.md`
 
