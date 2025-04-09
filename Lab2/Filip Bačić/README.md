@@ -1,103 +1,52 @@
-Power Management System with Arduino
+# Sustav za upravljanje potrošnjom energije
 
-📝 Description
-This Arduino project demonstrates energy-saving techniques using different sleep modes. The system flashes an LED for 3 seconds, then enters a low-power sleep state. Wake-up can be triggered either by a button press (external interrupt) or automatically after a time interval using Timer1 (~8 seconds).
+Ovaj Arduino projekt prikazuje upravljanje potrošnjom energije pomoću različitih sleep modova. Uređaj koristi LED kao indikator aktivnog stanja, a buđenje iz sleep moda ostvaruje se pomoću tipkala (vanjski prekid) ili Timer1 (~8 sekundi).
 
-✨ Features
-Three different sleep modes:
+## 📌 Sadržaj koda
 
-IDLE - Minimal power saving
+- Inicijalizacija serijske komunikacije (`Serial.begin`)
+- Konfiguracija LED na pinu 13 i tipkala na pinu 2 s `INPUT_PULLUP`
+- Aktivno stanje: LED bljeska 3 puta (3 sekunde)
+- Nakon aktivnog stanja, sustav ulazi u jedan od 3 sleep moda:
+  - `SLEEP_MODE_IDLE`
+  - `SLEEP_MODE_PWR_DOWN`
+  - `SLEEP_MODE_PWR_SAVE`
+- Sleep mod se mijenja svakih 3 ciklusa
+- ISR za vanjski prekid (`buttonInterrupt`) postavlja `wakeFlag`
+- ISR za Timer1 overflow (`TIMER1_OVF_vect`) postavlja `wakeFlag`
+- Funkcija `goToSleep()`:
+  - Postavlja odgovarajući sleep mode
+  - Konfigurira Timer1 (osim za `POWER_DOWN`)
+  - Isključuje nepotrebne periferije (`ADC`, `SPI`, `TWI`) u modovima 2 i 3
+  - Ulazi u sleep (`sleep_cpu`) i ponovno aktivira sve nakon buđenja
+- Prikaz poruka u Serial Monitoru o sleep modu, načinu buđenja i ciklusima
 
-POWER_DOWN - Maximum power saving
+## 🧩 Ugrađene biblioteke
 
-POWER_SAVE - Balanced power saving
+- `<avr/sleep.h>`
+- `<avr/interrupt.h>`
+- `<avr/power.h>`
 
-Automatic sleep mode rotation every 3 cycles
+## 🔌 Shema spoja
 
-Wake-up sources:
+- LED (npr. narančasta) → Pin 13 (s otpornikom) i GND
+- Tipkalo → Pin 2 i GND (koristi `INPUT_PULLUP`)
 
-External interrupt (button press)
+## 💻 Testirano u
 
-Timer1 overflow interrupt (~8 seconds)
+- [Wokwi Simulatoru](https://wokwi.com/)
+- Arduino UNO
 
-Serial monitoring of system states
+## 📁 Sadržaj repozitorija
 
-Power optimization by disabling unused peripherals
+- `power_management_system.ino`
+- `diagram.json` (Wokwi shema)
+- `README.md`
 
-🛠 Hardware Setup
-Components
-Arduino Uno
+## 👤 Autor
 
-LED (connected to pin 13)
+Filip – 09.04.2025.
 
-Push button (connected to pin 2 with internal pull-up)
+## 📜 Licenca
 
-Circuit Diagram
-Copy
-Arduino Uno:
-  - Pin 13 → LED → GND
-  - Pin 2 → Button → GND
-📚 Libraries Used
-<avr/sleep.h> - For sleep modes
-
-<avr/interrupt.h> - For interrupt handling
-
-<avr/power.h> - For power management
-
-🔧 How It Works
-Active State:
-
-LED blinks for 3 seconds (3x 500ms on/off)
-
-System prints status information to Serial Monitor
-
-Sleep State:
-
-Enters one of three sleep modes (rotates every 3 cycles)
-
-Disables unnecessary peripherals for additional power saving
-
-Can be woken by:
-
-Button press (external interrupt on falling edge)
-
-Timer1 overflow (~8 seconds)
-
-Wake-up:
-
-System detects wake source
-
-Re-enables peripherals
-
-Reports wake-up reason via Serial Monitor
-
-Repeats the cycle
-
-📊 Sleep Modes Comparison
-Mode	Power Saving	Wake-up Sources	Peripherals Disabled
-IDLE	Minimal	Any interrupt	None
-POWER_DOWN	Maximum	External interrupts/reset	All non-essential
-POWER_SAVE	Balanced	Timer1, external interrupts	ADC, SPI, TWI
-🚀 Getting Started
-Hardware Setup:
-
-Connect LED to pin 13
-
-Connect button to pin 2 (with internal pull-up)
-
-Upload Code:
-
-Compile and upload the sketch to your Arduino
-
-Monitor:
-
-Open Serial Monitor at 9600 baud to see system messages
-
-📝 Notes
-Button uses internal pull-up resistor (active LOW)
-
-Timer1 is configured for ~8 second wake-up intervals
-
-System automatically rotates sleep modes every 3 cycles
-
-For maximum power saving, use POWER_DOWN mode with minimal peripherals
+MIT License
