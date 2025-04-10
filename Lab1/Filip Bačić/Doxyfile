@@ -5,8 +5,8 @@
 #-----------------------------------------------------------------------------
 # Opći podaci o projektu
 #-----------------------------------------------------------------------------
-PROJECT_NAME           = "RUS_Lab2_prekid"           # Ime projekta
-PROJECT_BRIEF          = "Lab2: Ugradbeni sustav s prekidima u C jeziku"  # Kratak opis
+PROJECT_NAME           = "RUS_Lab1_prekid"           # Ime projekta
+PROJECT_BRIEF          = "Lab1: Ugradbeni sustav s prekidima u C jeziku"  # Kratak opis
 PROJECT_LOGO           =                             # Putanja do logotipa (opcionalno)
 OUTPUT_DIRECTORY       = docs                        # Izlazni direktorij za dokumentaciju
 CREATE_SUBDIRS         = YES                         # Stvori poddirektorije za HTML/graph datoteke

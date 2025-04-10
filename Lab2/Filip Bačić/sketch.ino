@@ -1,5 +1,6 @@
 /**
  * @file power_management_system.ino
+ * @brief Arduino sustav za upravljanje potrošnjom energije.
  *
  * @mainpage Sustav za upravljanje potrošnjom energije
  *
@@ -23,7 +24,7 @@
  * - Timer1 je konfiguriran za buđenje uređaja približno svakih 8 sekundi
  *
  * @section autor Autor
- * - Kreirano Filip na 09.04.2025.
+ * - Kreirano Filip Bačić na 09.04.2025.
  */
 
 // Biblioteke

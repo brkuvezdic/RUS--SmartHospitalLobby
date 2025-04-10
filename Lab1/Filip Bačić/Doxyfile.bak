@@ -1,0 +1,32 @@
+# Doxygen configuration file for RUS--SmartHospitalLobby project
+
+# Project related configuration
+PROJECT_NAME           = "RUS--SmartHospitalLobby"
+PROJECT_BRIEF          = "Smart Hospital Lobby System"
+PROJECT_LOGO           = ""  # Add a logo if you have one
+OUTPUT_DIRECTORY       = "docs"
+CREATE_SUBDIRS         = NO
+
+# Input files
+INPUT                  = "C:/Users/HT-ICT/Desktop/RUS projekt/RUS--SmartHospitalLobby/Lab2/Filip Bačić"
+FILE_PATTERNS          = "*.cpp *.h"
+
+# Generating documentation
+GENERATE_LATEX          = NO  # Don't generate LaTeX files
+GENERATE_RTF            = NO  # Don't generate RTF files
+GENERATE_HTML           = YES # Enable HTML output
+HTML_OUTPUT            = "html"
+HTML_HEADER            = ""  # Path to an optional HTML header file
+HTML_FOOTER            = ""  # Path to an optional HTML footer file
+GENERATE_MAN            = NO
+
+# Documentation structure
+EXTRACT_ALL            = YES  # Extract all documented symbols
+EXTRACT_PRIVATE        = YES  # Include private members in documentation
+EXTRACT_STATIC         = YES  # Include static members in documentation
+
+# Miscellaneous settings
+CASE_SENSE_NAMES       = YES  # Use case-sensitive file names
+QUIET                  = YES  # Avoid excessive output during generation
+DISABLE_INDEX          = NO  # Enable index generation
+RECURSIVE              = YES  # Recurse into subdirectories

@@ -1,7 +1,9 @@
 #include <Arduino.h>
 #include <Ticker.h>
 
-// Definicija pinova
+/**
+ * @brief Definicija pinova za tipkala, LED diodu, senzor i serijsku komunikaciju.
+ */
 #define BTN1_PIN 12
 #define BTN2_PIN 14
 #define LED_PIN 2
@@ -11,7 +13,9 @@
 #define SERIAL_BAUD_RATE 115200
 #define SERIAL_RX_PIN 16
 
-// Varijable
+/**
+ * @brief Varijable za upravljanje stanjima tipkala, senzora, timera i serijske komunikacije.
+ */
 volatile bool btn1_pressed = false;
 volatile bool btn2_pressed = false;
 volatile bool sensor_triggered = false;
@@ -29,7 +33,11 @@ bool ledSensorState = false;
 unsigned long lastSensorBlinkTime = 0;
 const unsigned long sensorBlinkInterval = 200;
 
-// Funkcija za upravljanje prekidom kada je tipkalo 1 pritisnuto
+/**
+ * @brief ISR za pritisak tipkala 1.
+ * 
+ * Ova ISR rutina se aktivira kada je tipkalo 1 pritisnuto.
+ */
 void IRAM_ATTR btn1ISR() {
     unsigned long currentMillis = millis();
     if (currentMillis - lastBtn1Press > debounceDelay) {
@@ -38,7 +46,11 @@ void IRAM_ATTR btn1ISR() {
     }
 }
 
-// Funkcija za upravljanje prekidom kada je tipkalo 2 pritisnuto
+/**
+ * @brief ISR za pritisak tipkala 2.
+ * 
+ * Ova ISR rutina se aktivira kada je tipkalo 2 pritisnuto.
+ */
 void IRAM_ATTR btn2ISR() {
     unsigned long currentMillis = millis();
     if (currentMillis - lastBtn2Press > debounceDelay) {
@@ -47,18 +59,30 @@ void IRAM_ATTR btn2ISR() {
     }
 }
 
-// Funkcija za upravljanje prekidom kada je senzor aktiviran
+/**
+ * @brief ISR za aktivaciju senzora.
+ * 
+ * Ova ISR rutina se aktivira kada senzor detektira promjenu stanja.
+ */
 void IRAM_ATTR sensorISR() {
     sensor_triggered = true;
 }
 
-// Funkcija koja se poziva na svakih 1 sekundu (TIMER1) za blikanje LED-a
+/**
+ * @brief Funkcija koja se poziva svakih 1 sekundu (TIMER1) za blikanje LED diode.
+ * 
+ * Ova funkcija se koristi za preklapanje stanja LED diode svakih 1 sekundu.
+ */
 void IRAM_ATTR onTimer() {
     timer_triggered = true;
     digitalWrite(LED_PIN, !digitalRead(LED_PIN)); // Preklopi stanje LED-a
 }
 
-// Funkcija za upravljanje prekidom serijske komunikacije
+/**
+ * @brief ISR za serijsku komunikaciju.
+ * 
+ * Ova ISR rutina se aktivira kada se primi podatak sa serijskog porta.
+ */
 void IRAM_ATTR serialISR() {
     if (Serial.available()) {
         received_char = Serial.read();
@@ -66,7 +90,14 @@ void IRAM_ATTR serialISR() {
     }
 }
 
-// Funkcija za mjerenje udaljenosti pomoću HC-SR04 senzora
+/**
+ * @brief Funkcija za mjerenje udaljenosti pomoću HC-SR04 senzora.
+ * 
+ * Funkcija šalje impuls na TRIG pin, mjeri vrijeme trajanja odgovora na ECHO pin,
+ * i vraća udaljenost u centimetrima.
+ * 
+ * @return Udaljenost u centimetrima ili -1 ako mjerenje nije uspjelo.
+ */
 float measureDistance() {
     digitalWrite(TRIG_PIN, LOW);
     delayMicroseconds(2);
@@ -81,7 +112,11 @@ float measureDistance() {
     return distance;
 }
 
-// Funkcija za treptanje LED diode kada je udaljenost manja od 100 cm
+/**
+ * @brief Funkcija za treptanje LED diode kada je udaljenost manja od 100 cm.
+ * 
+ * Ova funkcija uključuje i isključuje LED diodu na temelju mjerenja udaljenosti.
+ */
 void blinkSensorLED() {
     ledSensorState = !ledSensorState;
     digitalWrite(LED_PIN, ledSensorState);

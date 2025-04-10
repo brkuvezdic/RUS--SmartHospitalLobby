@@ -1,0 +1,12 @@
+digraph "setup"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="setup",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Arduino setup funkcija Inicijalizira serijsku komunikaciju, postavlja pinove, konfigurira vanjski pre..."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="buttonInterrupt",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/d98/sketch_8ino.html#a2a711de0a91e448032513da319406975",tooltip="Vanjski prekidni servis za tipkalo Ovaj ISR se aktivira kada je tipkalo pritisnuto (padajući brid),..."];
+}
