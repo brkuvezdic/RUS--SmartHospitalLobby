@@ -1,16 +1,25 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <WiFi.h>
-#include <HTTPClient.h>
+#include <FirebaseESP32.h>
 #include <ArduinoJson.h>
 
-// Postavka za simulirani WiFi način rada
+// Firebase configuration
+#define FIREBASE_HOST "rus---projekt-default-rtdb.europe-west1.firebasedatabase.app"
+#define FIREBASE_AUTH "Fg4FnkVhu41qNTYb4XjFI9VVeBmYBg9oYOblnfZJ"
+
+// WiFi configuration
+#define WIFI_SSID "WIFI"
+#define WIFI_PASSWORD "WIFI_PASS"
+
+// Simulated WiFi mode
 bool simulatedWiFiMode = true;
+bool hasInternet = false;
 
 // LCD
-LiquidCrystal_I2C lcd(0x27, 16, 2); // LCD na 0x27, 16x2
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-// Tipkovnica
+// Keypad
 const byte ROWS = 4;
 const byte COLS = 4;
 char keys[ROWS][COLS] = {
@@ -19,14 +28,19 @@ char keys[ROWS][COLS] = {
   {'7','8','9','C'},
   {'*','0','#','D'}
 };
-byte rowPins[ROWS] = {12, 13, 14, 15}; // Pinovi za redove tipkovnice
-byte colPins[COLS] = {5, 18, 19, 23};  // Pinovi za stupce tipkovnice
+byte rowPins[ROWS] = {12, 13, 14, 15};
+byte colPins[COLS] = {5, 18, 19, 23};
 
-// Pinovi za LED indikatore
-const int ledSuccessPin = 2; // Zeleni LED (uspjeh)
-const int ledErrorPin = 4;   // Crveni LED (greška)
+// LED pins
+const int ledSuccessPin = 2;
+const int ledErrorPin = 4;
 
-// Struktura za pohranu podataka o pacijentu
+// Firebase objects
+FirebaseData firebaseData;
+FirebaseConfig firebaseConfig;
+FirebaseAuth firebaseAuth;
+
+// Patient information structure
 struct PatientInfo {
   String cardNumber;
   String fullName;
@@ -36,7 +50,23 @@ struct PatientInfo {
   bool isValid;
 };
 
-// Stanja sustava
+// Local database for offline mode
+struct LocalPatient {
+  const char* cardNumber;
+  const char* fullName;
+  const char* roomNumber;
+  const char* appointmentTime;
+  const char* doctor;
+};
+
+LocalPatient localPatients[] = {
+  {"12345", "Ivan Horvat", "101", "09:30", "Dr. Perić"},
+  {"67890", "Ana Kovač", "102", "10:15", "Dr. Marić"},
+  {"54321", "Marko Novak", "103", "11:00", "Dr. Jurić"},
+  {"11111", "Petra Kralj", "104", "13:45", "Dr. Kovačić"},
+  {"22222", "Josip Tomić", "105", "14:30", "Dr. Babić"}
+};
+
 enum SystemState {
   WAITING_FOR_INPUT,
   PROCESSING_CARD,
@@ -44,25 +74,25 @@ enum SystemState {
   DISPLAY_ERROR
 };
 
-const char* patientDataJson = R"rawliteral(
-  [
-    {"cardNumber":"12345", "fullName":"Ivan Horvat", "roomNumber":"101", "appointmentTime":"09:30", "doctor":"Dr. Perić"},
-    {"cardNumber":"67890", "fullName":"Ana Kovač", "roomNumber":"102", "appointmentTime":"10:15", "doctor":"Dr. Marić"},
-    {"cardNumber":"54321", "fullName":"Marko Novak", "roomNumber":"103", "appointmentTime":"11:00", "doctor":"Dr. Jurić"},
-    {"cardNumber":"11111", "fullName":"Petra Kralj", "roomNumber":"104", "appointmentTime":"13:45", "doctor":"Dr. Kovačić"},
-    {"cardNumber":"22222", "fullName":"Josip Tomić", "roomNumber":"105", "appointmentTime":"14:30", "doctor":"Dr. Babić"}
-  ]
-  )rawliteral";
-
 SystemState currentState = WAITING_FOR_INPUT;
 String inputBuffer = "";
 unsigned long lastActionTime = 0;
-const unsigned long TIMEOUT = 30000; // 30 sekundi timeout
+const unsigned long TIMEOUT = 30000;
+
+// Function prototypes - add these to fix the "not declared in this scope" errors
+void connectToWiFi();
+void resetToInputMode();
+void handleCardInput();
+void processCardNumber();
+char getKey();
+PatientInfo getPatientData(String cardNumber);
+void displayPatientInfo(PatientInfo patient);
+String truncateString(String str, int maxLength);
 
 void setup() {
   Serial.begin(115200);
   
-  // Inicijalizacija LCD-a
+  // Initialize LCD
   lcd.init();
   lcd.backlight();
   lcd.clear();
@@ -71,26 +101,44 @@ void setup() {
   lcd.setCursor(0, 1);
   lcd.print("sustava...");
 
-  // Inicijalizacija pinova za tipkovnicu
+  // Initialize keypad pins
   for (byte r = 0; r < ROWS; r++) {
     pinMode(rowPins[r], INPUT_PULLUP);
   }
   
-  // Inicijalizacija LED pinova
+  // Initialize LED pins
   pinMode(ledSuccessPin, OUTPUT);
   pinMode(ledErrorPin, OUTPUT);
   
-  // Simulirano spajanje na WiFi
+  // Connect to WiFi
   connectToWiFi();
   
-  // Postavi početni ekran
+  // Initialize Firebase if connected
+  if (hasInternet) {
+    firebaseConfig.host = FIREBASE_HOST;
+    firebaseConfig.signer.tokens.legacy_token = FIREBASE_AUTH;
+    Firebase.begin(&firebaseConfig, &firebaseAuth);
+    Firebase.reconnectWiFi(true);
+    Firebase.setReadTimeout(firebaseData, 1000 * 60);
+    Firebase.setwriteSizeLimit(firebaseData, "tiny");
+    Serial.println("Firebase initialized");
+  }
+  
+  // Set initial screen
   resetToInputMode();
 }
 
 void loop() {
-  // Provjeri timeout
+  // Check timeout
   if (millis() - lastActionTime > TIMEOUT) {
     resetToInputMode();
+  }
+  
+  // Periodic WiFi check (every 30 seconds)
+  static unsigned long lastWiFiCheck = 0;
+  if (millis() - lastWiFiCheck > 30000) {
+    connectToWiFi();
+    lastWiFiCheck = millis();
   }
   
   switch (currentState) {
@@ -104,9 +152,9 @@ void loop() {
       
     case DISPLAY_PATIENT_INFO:
     case DISPLAY_ERROR:
-      // Ova stanja samo čekaju na timeout ili posebne tipke
+      // These states just wait for timeout or special keys
       char key = getKey();
-      if (key == 'D') { // D tipka za povratak
+      if (key == 'D') { // D key to return
         resetToInputMode();
       }
       break;
@@ -117,39 +165,54 @@ void loop() {
 
 void connectToWiFi() {
   if (simulatedWiFiMode) {
-    // Simuliraj uspješno povezivanje
+    // Simulate WiFi in Wokwi environment
+    WiFi.begin("Wokwi-GUEST", "", 6);
     lcd.clear();
     lcd.setCursor(0, 0);
-    lcd.print("WiFi simuliran");
-    lcd.setCursor(0, 1);
-    lcd.print("192.168.1.100");
+    lcd.print("Simulirani WiFi");
     
-    Serial.println("WiFi simuliran");
-    Serial.println("Simulirana IP adresa: 192.168.1.100");
+    int attempt = 0;
+    while (WiFi.status() != WL_CONNECTED && attempt < 10) {
+      delay(500);
+      lcd.print(".");
+      attempt++;
+    }
     
+    if (WiFi.status() == WL_CONNECTED) {
+      hasInternet = true;
+      lcd.setCursor(0, 1);
+      lcd.print("IP: 192.168.1.100");
+      Serial.println("Simulated WiFi connected");
+    } else {
+      hasInternet = false;
+      lcd.setCursor(0, 1);
+      lcd.print("Offline mod");
+      Serial.println("Simulated WiFi not available");
+    }
     delay(2000);
     return;
   }
   
-  // Ovo se neće izvršiti u simuliranom načinu rada
+  // Real WiFi connection
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Spajanje na");
+  lcd.print("Spajanje na WiFi");
   lcd.setCursor(0, 1);
-  lcd.print("WiFi...");
+  lcd.print(WIFI_SSID);
   
-  WiFi.begin("SSID", "PASSWORD");
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   
   int attemptCount = 0;
-  while (WiFi.status() != WL_CONNECTED && attemptCount < 20) {
+  while (WiFi.status() != WL_CONNECTED && attemptCount < 10) {
     delay(500);
     Serial.print(".");
     attemptCount++;
   }
   
   if (WiFi.status() == WL_CONNECTED) {
-    Serial.println("WiFi spojen");
-    Serial.println("IP adresa: ");
+    hasInternet = true;
+    Serial.println("WiFi connected");
+    Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
     
     lcd.clear();
@@ -157,16 +220,16 @@ void connectToWiFi() {
     lcd.print("WiFi spojen");
     lcd.setCursor(0, 1);
     lcd.print(WiFi.localIP());
-    delay(2000);
   } else {
-    Serial.println("WiFi spajanje neuspješno");
+    hasInternet = false;
+    Serial.println("WiFi connection failed");
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("WiFi greška!");
     lcd.setCursor(0, 1);
     lcd.print("Offline način");
-    delay(2000);
   }
+  delay(2000);
 }
 
 void resetToInputMode() {
@@ -178,7 +241,7 @@ void resetToInputMode() {
   lcd.setCursor(0, 1);
   lastActionTime = millis();
   
-  // Isključi LED indikatore
+  // Turn off LED indicators
   digitalWrite(ledSuccessPin, LOW);
   digitalWrite(ledErrorPin, LOW);
 }
@@ -189,23 +252,23 @@ void handleCardInput() {
     lastActionTime = millis();
     
     if (key == '#') {
-      // Potvrdi unos
+      // Confirm input
       if (inputBuffer.length() > 0) {
         currentState = PROCESSING_CARD;
       }
     } 
     else if (key == '*') {
-      // Obriši zadnji znak
+      // Delete last character
       if (inputBuffer.length() > 0) {
         inputBuffer = inputBuffer.substring(0, inputBuffer.length() - 1);
         lcd.setCursor(0, 1);
-        lcd.print("                "); // Očisti red
+        lcd.print("                ");
         lcd.setCursor(0, 1);
         lcd.print(inputBuffer);
       }
     }
     else if (key >= '0' && key <= '9' && inputBuffer.length() < 16) {
-      // Dodaj brojku
+      // Add digit
       inputBuffer += key;
       lcd.setCursor(0, 1);
       lcd.print(inputBuffer);
@@ -218,12 +281,12 @@ void processCardNumber() {
   lcd.setCursor(0, 0);
   lcd.print("Provjera...");
   
-  PatientInfo patient = getPatientFromAPI(inputBuffer);
+  PatientInfo patient = getPatientData(inputBuffer);
   
   if (patient.isValid) {
     displayPatientInfo(patient);
     currentState = DISPLAY_PATIENT_INFO;
-    // Uspješna prijava - zeleni LED
+    // Successful login - green LED
     digitalWrite(ledSuccessPin, HIGH);
     digitalWrite(ledErrorPin, LOW);
   } else {
@@ -233,7 +296,7 @@ void processCardNumber() {
     lcd.setCursor(0, 1);
     lcd.print("Nema u bazi");
     currentState = DISPLAY_ERROR;
-    // Neuspješna prijava - crveni LED
+    // Failed login - red LED
     digitalWrite(ledSuccessPin, LOW);
     digitalWrite(ledErrorPin, HIGH);
   }
@@ -241,47 +304,81 @@ void processCardNumber() {
   lastActionTime = millis();
 }
 
-PatientInfo getPatientFromAPI(String cardNumber) {
+PatientInfo getPatientData(String cardNumber) {
   PatientInfo patient;
   patient.isValid = false;
 
-  StaticJsonDocument<2048> doc;
-  DeserializationError error = deserializeJson(doc, patientDataJson);
-  if (error) return patient;
+  // First try to get from Firebase
+  if (hasInternet) {
+    String path = "/pacijenti/" + cardNumber;
+    
+    if (Firebase.getJSON(firebaseData, path)) {
+      String json = firebaseData.jsonString();
 
-  for (JsonObject obj : doc.as<JsonArray>()) {
-    if (obj["cardNumber"] == cardNumber) {
-      patient.cardNumber = obj["cardNumber"].as<String>();
-      patient.fullName = obj["fullName"].as<String>();
-      patient.roomNumber = obj["roomNumber"].as<String>();
-      patient.appointmentTime = obj["appointmentTime"].as<String>();
-      patient.doctor = obj["doctor"].as<String>();
-      patient.isValid = true;
-      break;
+      if (json.isEmpty()) {
+        Serial.println("Empty response from Firebase");
+        return patient;
+      }
+
+      DynamicJsonDocument doc(1024);
+      DeserializationError error = deserializeJson(doc, json);
+      
+      if (!error) {
+        // Extract patient data
+        patient.cardNumber = cardNumber;
+        patient.fullName = doc["fullName"].as<String>();
+        patient.roomNumber = doc["roomNumber"].as<String>();
+        patient.appointmentTime = doc["appointmentTime"].as<String>();
+        patient.doctor = doc["doctor"].as<String>();
+        patient.isValid = true;
+        Serial.println("Data retrieved from Firebase");
+        return patient;
+      } else {
+        Serial.println("JSON deserialization failed: " + String(error.c_str()));
+      }
+    } else {
+      Serial.println("Firebase response error: " + firebaseData.errorReason());
     }
   }
 
-  delay(800);
+  // If Firebase is not available or data doesn't exist, try local database
+  for (int i = 0; i < sizeof(localPatients) / sizeof(localPatients[0]); i++) {
+    if (cardNumber == localPatients[i].cardNumber) {
+      patient.cardNumber = cardNumber;
+      patient.fullName = localPatients[i].fullName;
+      patient.roomNumber = localPatients[i].roomNumber;
+      patient.appointmentTime = localPatients[i].appointmentTime;
+      patient.doctor = localPatients[i].doctor;
+      patient.isValid = true;
+      Serial.println("Data retrieved from local database");
+      break;
+    }
+  }
+  
   return patient;
 }
 
 void displayPatientInfo(PatientInfo patient) {
-  // Prvi ekran - osnovne informacije
+  // First screen - basic info
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Ime: " + truncateString(patient.fullName, 11));
+  lcd.print("Ime: ");
+  lcd.print(truncateString(patient.fullName, 11));
   lcd.setCursor(0, 1);
-  lcd.print("Soba: " + patient.roomNumber);
+  lcd.print("Soba: ");
+  lcd.print(patient.roomNumber);
   delay(3000);
   
-  // Drugi ekran - dodatne informacije
+  // Second screen - additional info
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Termin: " + truncateString(patient.appointmentTime, 9));
+  lcd.print("Termin: ");
+  lcd.print(truncateString(patient.appointmentTime, 8));
   lcd.setCursor(0, 1);
-  lcd.print("Dr: " + truncateString(patient.doctor, 13));
+  lcd.print("Dr: ");
+  lcd.print(truncateString(patient.doctor, 12));
   
-  // Prikaži uputu za povratak
+  // Show return instruction
   delay(3000);
   lcd.clear();
   lcd.setCursor(0, 0);
@@ -297,7 +394,6 @@ String truncateString(String str, int maxLength) {
   return str.substring(0, maxLength);
 }
 
-// Funkcija za čitanje tipke s tipkovnice
 char getKey() {
   for (byte c = 0; c < COLS; c++) {
     pinMode(colPins[c], OUTPUT);
@@ -305,12 +401,12 @@ char getKey() {
     for (byte r = 0; r < ROWS; r++) {
       if (digitalRead(rowPins[r]) == LOW) {
         delay(50); // Debounce
-        while (digitalRead(rowPins[r]) == LOW); // Čekaj dok ne otpusti
-        pinMode(colPins[c], INPUT_PULLUP); // Resetiraj pin
+        while (digitalRead(rowPins[r]) == LOW); // Wait for release
+        pinMode(colPins[c], INPUT_PULLUP); // Reset pin
         return keys[r][c];
       }
     }
-    pinMode(colPins[c], INPUT_PULLUP); // Resetiraj pin
+    pinMode(colPins[c], INPUT_PULLUP); // Reset pin
   }
-  return 0; // Nema pritisnute tipke
+  return 0; // No key pressed
 }

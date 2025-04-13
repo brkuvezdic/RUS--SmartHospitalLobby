@@ -6,3 +6,4 @@ LiquidCrystal I2C
 Keypad
 ArduinoJson
 MFRC522
+Firebase ESP32 Client
