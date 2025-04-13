@@ -17,6 +17,20 @@
       "top": -214.4,
       "left": -397.6,
       "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledSuccess",
+      "top": 140.4,
+      "left": 253.4,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledError",
+      "top": 140.4,
+      "left": 176.6,
+      "attrs": { "color": "red" }
     }
   ],
   "connections": [
@@ -33,7 +47,11 @@
     [ "keypad1:C1", "esp:5", "green", [ "v0" ] ],
     [ "keypad1:C2", "esp:18", "green", [ "v0" ] ],
     [ "keypad1:C3", "esp:19", "green", [ "v0" ] ],
-    [ "keypad1:C4", "esp:23", "green", [ "v0" ] ]
+    [ "keypad1:C4", "esp:23", "green", [ "v0" ] ],
+    [ "ledSuccess:A", "esp:2", "green", [ "v0" ] ],
+    [ "ledSuccess:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "ledError:A", "esp:4", "green", [ "v0" ] ],
+    [ "ledError:C", "esp:GND.2", "black", [ "v0" ] ]
   ],
   "dependencies": {}
 }
