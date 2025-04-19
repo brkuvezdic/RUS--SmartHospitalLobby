@@ -1,0 +1,7 @@
+<map id="displayPatientInfo" name="displayPatientInfo">
+<area shape="rect" id="Node000001" title="Displays patient info on the LCD screen." alt="" coords="5,31,131,57"/>
+<area shape="rect" id="Node000002" href="$da/d98/sketch_8ino.html#ae084e1bc8ccb35ea289ba0ca4972ea6d" title=" " alt="" coords="211,5,249,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,31,195,21,196,27,132,37"/>
+<area shape="rect" id="Node000003" href="$da/d98/sketch_8ino.html#a211f792f3c0783031102e8c8ccc1a861" title="Truncates string to fit LCD line." alt="" coords="179,56,281,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,51,164,56,163,62,131,57"/>
+</map>
