@@ -31,6 +31,13 @@
       "top": 140.4,
       "left": 176.6,
       "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer1",
+      "top": 140.4,
+      "left": 330.2,
+      "attrs": {}
     }
   ],
   "connections": [
@@ -51,7 +58,9 @@
     [ "ledSuccess:A", "esp:2", "green", [ "v0" ] ],
     [ "ledSuccess:C", "esp:GND.2", "black", [ "v0" ] ],
     [ "ledError:A", "esp:4", "green", [ "v0" ] ],
-    [ "ledError:C", "esp:GND.2", "black", [ "v0" ] ]
+    [ "ledError:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "buzzer1:1", "esp:25", "green", [ "v0" ] ],
+    [ "buzzer1:2", "esp:GND.2", "black", [ "v0" ] ]
   ],
   "dependencies": {}
 }

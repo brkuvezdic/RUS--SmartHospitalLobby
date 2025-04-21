@@ -3,7 +3,7 @@
  * @brief ESP32 application for displaying patient info via keypad and LCD using Firebase and offline mode.
  *
  * This sketch connects to WiFi and Firebase to retrieve patient appointment information using a card number entered via keypad.
- * If the network is unavailable, it uses a local database. The LCD displays info and uses LEDs to indicate success or failure.
+ * If the network is unavailable, it uses a local database. The LCD displays info and uses LEDs and buzzer to indicate success or failure.
  */
 
  #include <Wire.h>
@@ -20,6 +20,9 @@
  #define WIFI_SSID ""
  #define WIFI_PASSWORD ""
  
+ const int buzzerPin = 25;
+ #define BUZZER_CHANNEL 0
+ #define BUZZER_RESOLUTION 8
  // Simulation mode for Wokwi
  bool simulatedWiFiMode = true;
  bool hasInternet = false;
@@ -100,6 +103,8 @@
  void resetToInputMode();
  void handleCardInput();
  void processCardNumber();
+ void beepSuccess();
+ void beepError();
  char getKey();
  PatientInfo getPatientData(String cardNumber);
  void displayPatientInfo(PatientInfo patient);
@@ -118,12 +123,16 @@
    lcd.print("Inicijalizacija");
    lcd.setCursor(0, 1);
    lcd.print("sustava...");
- 
+   ledcSetup(BUZZER_CHANNEL, 2000, BUZZER_RESOLUTION); 
+  ledcAttachPin(buzzerPin, BUZZER_CHANNEL);
    for (byte r = 0; r < ROWS; r++) {
      pinMode(rowPins[r], INPUT_PULLUP);
    }
- 
-   pinMode(ledSuccessPin, OUTPUT);
+   pinMode(buzzerPin, OUTPUT);
+   pinMode(buzzerPin, OUTPUT);
+   ledcAttachPin(buzzerPin, BUZZER_CHANNEL);
+   ledcSetup(BUZZER_CHANNEL, 2000, BUZZER_RESOLUTION);
+
    pinMode(ledErrorPin, OUTPUT);
  
    connectToWiFi();
@@ -174,6 +183,28 @@
    }
    delay(100);
  }
+ 
+ /**
+  * @brief Plays success beep pattern (higher pitch, single beep)
+  */
+ void beepSuccess() {
+  Serial.println("Playing beep...");
+  ledcWriteTone(BUZZER_CHANNEL, 2000); // 2kHz
+  delay(200);
+  ledcWrite(BUZZER_CHANNEL, 0); // Off
+}
+ 
+ /**
+  * @brief Plays error beep pattern (lower pitch, double beep)
+  */
+ void beepError() {
+  for(int i=0; i<2; i++) {
+    ledcWriteTone(BUZZER_CHANNEL, 1200); // 1.2kHz
+    delay(100);
+    ledcWrite(BUZZER_CHANNEL, 0);
+    if(i==0) delay(50); // Gap between beeps
+  }
+}
  
  /**
   * @brief Connects to WiFi (real or simulated).
@@ -296,6 +327,9 @@
    if (patient.isValid) {
      displayPatientInfo(patient);
      currentState = DISPLAY_PATIENT_INFO;
+     beepSuccess();
+   
+
      digitalWrite(ledSuccessPin, HIGH);
      digitalWrite(ledErrorPin, LOW);
    } else {
@@ -305,6 +339,7 @@
      lcd.setCursor(0, 1);
      lcd.print("Nema u bazi");
      currentState = DISPLAY_ERROR;
+     beepError();
      digitalWrite(ledSuccessPin, LOW);
      digitalWrite(ledErrorPin, HIGH);
    }
@@ -321,7 +356,8 @@
    patient.isValid = false;
  
    if (hasInternet) {
-     String path = "/pacijenti/" + cardNumber;
+    String path = "/pacijenti/";
+    path.concat(cardNumber);    
      if (Firebase.getJSON(firebaseData, path)) {
        String json = firebaseData.jsonString();
        if (json.isEmpty()) return patient;
@@ -413,4 +449,3 @@
    }
    return 0;
  }
- 
