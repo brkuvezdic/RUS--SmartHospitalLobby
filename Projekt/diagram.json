@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "author": "Anonymous maker",
-  "editor": "wokwi",
+  "author": "SmartHospital",
+  "editor": "Studenti",
   "parts": [
     { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
     {
@@ -31,7 +31,21 @@
       "top": 140.4,
       "left": 176.6,
       "attrs": { "color": "red" }
-    }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer1",
+      "top": 140.4,
+      "left": 330.2,
+      "attrs": {}
+    },
+{
+  "type": "wokwi-led",
+  "id": "ledWifi",
+  "top": 140.4,
+  "left": 100,
+  "attrs": { "color": "blue" }
+}
   ],
   "connections": [
     [ "esp:TX", "$serialMonitor:RX", "", [] ],
@@ -51,7 +65,11 @@
     [ "ledSuccess:A", "esp:2", "green", [ "v0" ] ],
     [ "ledSuccess:C", "esp:GND.2", "black", [ "v0" ] ],
     [ "ledError:A", "esp:4", "green", [ "v0" ] ],
-    [ "ledError:C", "esp:GND.2", "black", [ "v0" ] ]
+    [ "ledError:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "buzzer1:1", "esp:25", "green", [ "v0" ] ],
+    [ "ledWifi:A", "esp:17", "green", [ "v0" ] ],
+    [ "ledWifi:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "buzzer1:2", "esp:GND.2", "black", [ "v0" ] ]
   ],
   "dependencies": {}
 }
