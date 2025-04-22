@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['timeout_0',['TIMEOUT',['../da/d98/sketch_8ino.html#ac45eb8ac3eb188fc0d9728907d3a0362',1,'sketch.ino']]]
+  ['simulatedwifimode_0',['simulatedWiFiMode',['../da/d98/sketch_8ino.html#ab7a297218fb22d38a00b6305308206b1',1,'sketch.ino']]]
 ];

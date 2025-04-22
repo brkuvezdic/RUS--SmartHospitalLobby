@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['firebase_5fauth_0',['FIREBASE_AUTH',['../da/d98/sketch_8ino.html#a7a689f00c928d30a9e6b9c294e8148c1',1,'sketch.ino']]],
-  ['firebase_5fhost_1',['FIREBASE_HOST',['../da/d98/sketch_8ino.html#acd939b64a048d6ed459be654090a838a',1,'sketch.ino']]],
-  ['firebaseauth_2',['firebaseAuth',['../da/d98/sketch_8ino.html#a31581cf7bb135a8d6d44310b24e06a38',1,'sketch.ino']]],
-  ['firebaseconfig_3',['firebaseConfig',['../da/d98/sketch_8ino.html#a48345e899174b69437171a7c85de6de2',1,'sketch.ino']]],
-  ['firebasedata_4',['firebaseData',['../da/d98/sketch_8ino.html#a1b37470b9914566c41427050ff31e2d1',1,'sketch.ino']]],
-  ['fullname_5',['fullName',['../dd/db6/struct_patient_info.html#a3ec0b83692928870556647fb63276300',1,'PatientInfo::fullName'],['../d3/d0a/struct_local_patient.html#a028e3b9ff5ccee6a88579834ff47ba28',1,'LocalPatient::fullName']]]
+  ['display_5ferror_0',['DISPLAY_ERROR',['../da/d98/sketch_8ino.html#aa51313be2faacb739a18fdeecefbac75a1b8dfe61ee52c868df2689df2540828f',1,'sketch.ino']]],
+  ['display_5fpatient_5finfo_1',['DISPLAY_PATIENT_INFO',['../da/d98/sketch_8ino.html#aa51313be2faacb739a18fdeecefbac75a0cf113b3a00cbca93902aadd850d3c52',1,'sketch.ino']]],
+  ['displaypatientinfo_2',['displayPatientInfo',['../da/d98/sketch_8ino.html#a98442a31625045560a6fd3e84d4e4d5e',1,'sketch.ino']]],
+  ['doctor_3',['doctor',['../dd/db6/struct_patient_info.html#af96ad5815b185527a28ea8808e7b0efa',1,'PatientInfo::doctor'],['../d3/d0a/struct_local_patient.html#a2f092b2f85e280cd0704e585dde13aa4',1,'LocalPatient::doctor']]]
 ];

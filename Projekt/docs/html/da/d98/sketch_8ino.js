@@ -2,6 +2,8 @@ var sketch_8ino =
 [
     [ "PatientInfo", "dd/db6/struct_patient_info.html", "dd/db6/struct_patient_info" ],
     [ "LocalPatient", "d3/d0a/struct_local_patient.html", "d3/d0a/struct_local_patient" ],
+    [ "BUZZER_CHANNEL", "da/d98/sketch_8ino.html#ac69331f8facce28cfd7b94076ca7055e", null ],
+    [ "BUZZER_RESOLUTION", "da/d98/sketch_8ino.html#a315a28de20a612a435fefed3e3d3df3e", null ],
     [ "FIREBASE_AUTH", "da/d98/sketch_8ino.html#a7a689f00c928d30a9e6b9c294e8148c1", null ],
     [ "FIREBASE_HOST", "da/d98/sketch_8ino.html#acd939b64a048d6ed459be654090a838a", null ],
     [ "WIFI_PASSWORD", "da/d98/sketch_8ino.html#a8685d8aff7e570048090a3a51afceb07", null ],
@@ -12,6 +14,8 @@ var sketch_8ino =
       [ "DISPLAY_PATIENT_INFO", "da/d98/sketch_8ino.html#aa51313be2faacb739a18fdeecefbac75a0cf113b3a00cbca93902aadd850d3c52", null ],
       [ "DISPLAY_ERROR", "da/d98/sketch_8ino.html#aa51313be2faacb739a18fdeecefbac75a1b8dfe61ee52c868df2689df2540828f", null ]
     ] ],
+    [ "beepError", "da/d98/sketch_8ino.html#aa2d5ad8f8daaed55a5b97fb55aa89170", null ],
+    [ "beepSuccess", "da/d98/sketch_8ino.html#a907ace78eeae758c69822122d16a5598", null ],
     [ "connectToWiFi", "da/d98/sketch_8ino.html#ae786f8044734bf7283b0df88675335c5", null ],
     [ "displayPatientInfo", "da/d98/sketch_8ino.html#a98442a31625045560a6fd3e84d4e4d5e", null ],
     [ "getKey", "da/d98/sketch_8ino.html#a2da36c055d23bb1f20f20bfabbb40661", null ],
@@ -23,6 +27,7 @@ var sketch_8ino =
     [ "resetToInputMode", "da/d98/sketch_8ino.html#ae4b79fd67844175694542864c20abd28", null ],
     [ "setup", "da/d98/sketch_8ino.html#a4fc01d736fe50cf5b977f755b675f11d", null ],
     [ "truncateString", "da/d98/sketch_8ino.html#a211f792f3c0783031102e8c8ccc1a861", null ],
+    [ "buzzerPin", "da/d98/sketch_8ino.html#a988a608b186de34e793324aee3ec73ee", null ],
     [ "colPins", "da/d98/sketch_8ino.html#aa9fece7b062124080e4b2976f9a8b675", null ],
     [ "COLS", "da/d98/sketch_8ino.html#aefd90f1160eaa105bc910d4d7c46b815", null ],
     [ "currentState", "da/d98/sketch_8ino.html#a7e2bcf8de2c1eced051a3a4d69ec7cee", null ],

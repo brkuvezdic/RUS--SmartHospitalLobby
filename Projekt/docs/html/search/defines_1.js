@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wifi_5fpassword_0',['WIFI_PASSWORD',['../da/d98/sketch_8ino.html#a8685d8aff7e570048090a3a51afceb07',1,'sketch.ino']]],
-  ['wifi_5fssid_1',['WIFI_SSID',['../da/d98/sketch_8ino.html#a586542b79d00e4db7e1d5a667ae83a2b',1,'sketch.ino']]]
+  ['firebase_5fauth_0',['FIREBASE_AUTH',['../da/d98/sketch_8ino.html#a7a689f00c928d30a9e6b9c294e8148c1',1,'sketch.ino']]],
+  ['firebase_5fhost_1',['FIREBASE_HOST',['../da/d98/sketch_8ino.html#acd939b64a048d6ed459be654090a838a',1,'sketch.ino']]]
 ];

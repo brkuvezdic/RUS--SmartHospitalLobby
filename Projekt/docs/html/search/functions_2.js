@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['getkey_0',['getKey',['../da/d98/sketch_8ino.html#a2da36c055d23bb1f20f20bfabbb40661',1,'sketch.ino']]],
-  ['getpatientdata_1',['getPatientData',['../da/d98/sketch_8ino.html#ab249427f7b02b085c108ba7ff5bd8fa2',1,'sketch.ino']]]
+  ['displaypatientinfo_0',['displayPatientInfo',['../da/d98/sketch_8ino.html#a98442a31625045560a6fd3e84d4e4d5e',1,'sketch.ino']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['firebase_5fauth_0',['FIREBASE_AUTH',['../da/d98/sketch_8ino.html#a7a689f00c928d30a9e6b9c294e8148c1',1,'sketch.ino']]],
-  ['firebase_5fhost_1',['FIREBASE_HOST',['../da/d98/sketch_8ino.html#acd939b64a048d6ed459be654090a838a',1,'sketch.ino']]]
+  ['buzzer_5fchannel_0',['BUZZER_CHANNEL',['../da/d98/sketch_8ino.html#ac69331f8facce28cfd7b94076ca7055e',1,'sketch.ino']]],
+  ['buzzer_5fresolution_1',['BUZZER_RESOLUTION',['../da/d98/sketch_8ino.html#a315a28de20a612a435fefed3e3d3df3e',1,'sketch.ino']]]
 ];

@@ -151,6 +151,10 @@ Macros</h2></td></tr>
 <tr class="separator:a586542b79d00e4db7e1d5a667ae83a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8685d8aff7e570048090a3a51afceb07" id="r_a8685d8aff7e570048090a3a51afceb07"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8685d8aff7e570048090a3a51afceb07">WIFI_PASSWORD</a>&#160;&#160;&#160;&quot;&quot;</td></tr>
 <tr class="separator:a8685d8aff7e570048090a3a51afceb07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac69331f8facce28cfd7b94076ca7055e" id="r_ac69331f8facce28cfd7b94076ca7055e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac69331f8facce28cfd7b94076ca7055e">BUZZER_CHANNEL</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:ac69331f8facce28cfd7b94076ca7055e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a315a28de20a612a435fefed3e3d3df3e" id="r_a315a28de20a612a435fefed3e3d3df3e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a315a28de20a612a435fefed3e3d3df3e">BUZZER_RESOLUTION</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:a315a28de20a612a435fefed3e3d3df3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -177,6 +181,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ac14fcfce1e57d782584ccc183c008a2e" id="r_ac14fcfce1e57d782584ccc183c008a2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac14fcfce1e57d782584ccc183c008a2e">processCardNumber</a> ()</td></tr>
 <tr class="memdesc:ac14fcfce1e57d782584ccc183c008a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes card number and fetches patient info.  <br /></td></tr>
 <tr class="separator:ac14fcfce1e57d782584ccc183c008a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a907ace78eeae758c69822122d16a5598" id="r_a907ace78eeae758c69822122d16a5598"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a907ace78eeae758c69822122d16a5598">beepSuccess</a> ()</td></tr>
+<tr class="memdesc:a907ace78eeae758c69822122d16a5598"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays success beep pattern (higher pitch, single beep)  <br /></td></tr>
+<tr class="separator:a907ace78eeae758c69822122d16a5598"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2d5ad8f8daaed55a5b97fb55aa89170" id="r_aa2d5ad8f8daaed55a5b97fb55aa89170"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2d5ad8f8daaed55a5b97fb55aa89170">beepError</a> ()</td></tr>
+<tr class="memdesc:aa2d5ad8f8daaed55a5b97fb55aa89170"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays error beep pattern (lower pitch, double beep)  <br /></td></tr>
+<tr class="separator:aa2d5ad8f8daaed55a5b97fb55aa89170"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2da36c055d23bb1f20f20bfabbb40661" id="r_a2da36c055d23bb1f20f20bfabbb40661"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2da36c055d23bb1f20f20bfabbb40661">getKey</a> ()</td></tr>
 <tr class="memdesc:a2da36c055d23bb1f20f20bfabbb40661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets pressed key from keypad.  <br /></td></tr>
 <tr class="separator:a2da36c055d23bb1f20f20bfabbb40661"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -198,6 +208,8 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a988a608b186de34e793324aee3ec73ee" id="r_a988a608b186de34e793324aee3ec73ee"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a988a608b186de34e793324aee3ec73ee">buzzerPin</a> = 25</td></tr>
+<tr class="separator:a988a608b186de34e793324aee3ec73ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7a297218fb22d38a00b6305308206b1" id="r_ab7a297218fb22d38a00b6305308206b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7a297218fb22d38a00b6305308206b1">simulatedWiFiMode</a> = true</td></tr>
 <tr class="separator:ab7a297218fb22d38a00b6305308206b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4be7012087927efdb769dc93d4bac589" id="r_a4be7012087927efdb769dc93d4bac589"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4be7012087927efdb769dc93d4bac589">hasInternet</a> = false</td></tr>
@@ -234,6 +246,34 @@ Variables</h2></td></tr>
 <tr class="separator:ac45eb8ac3eb188fc0d9728907d3a0362"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ac69331f8facce28cfd7b94076ca7055e" name="ac69331f8facce28cfd7b94076ca7055e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac69331f8facce28cfd7b94076ca7055e">&#9670;&#160;</a></span>BUZZER_CHANNEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUZZER_CHANNEL&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a315a28de20a612a435fefed3e3d3df3e" name="a315a28de20a612a435fefed3e3d3df3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a315a28de20a612a435fefed3e3d3df3e">&#9670;&#160;</a></span>BUZZER_RESOLUTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUZZER_RESOLUTION&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a7a689f00c928d30a9e6b9c294e8148c1" name="a7a689f00c928d30a9e6b9c294e8148c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a689f00c928d30a9e6b9c294e8148c1">&#9670;&#160;</a></span>FIREBASE_AUTH</h2>
 
@@ -312,6 +352,72 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="aa2d5ad8f8daaed55a5b97fb55aa89170" name="aa2d5ad8f8daaed55a5b97fb55aa89170"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2d5ad8f8daaed55a5b97fb55aa89170">&#9670;&#160;</a></span>beepError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void beepError </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Plays error beep pattern (lower pitch, double beep) </p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="../../da/d98/sketch_8ino_aa2d5ad8f8daaed55a5b97fb55aa89170_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_aa2d5ad8f8daaed55a5b97fb55aa89170_icgraph" alt=""/></div>
+<map name="ada/d98/sketch_8ino_aa2d5ad8f8daaed55a5b97fb55aa89170_icgraph" id="ada/d98/sketch_8ino_aa2d5ad8f8daaed55a5b97fb55aa89170_icgraph">
+<area shape="rect" title="Plays error beep pattern (lower pitch, double beep)" alt="" coords="288,5,365,32"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#ac14fcfce1e57d782584ccc183c008a2e" title="Processes card number and fetches patient info." alt="" coords="99,5,240,32"/>
+<area shape="poly" title=" " alt="" coords="272,21,240,21,240,16,272,16"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Main loop handles state machine and key input." alt="" coords="5,5,51,32"/>
+<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a907ace78eeae758c69822122d16a5598" name="a907ace78eeae758c69822122d16a5598"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a907ace78eeae758c69822122d16a5598">&#9670;&#160;</a></span>beepSuccess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void beepSuccess </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Plays success beep pattern (higher pitch, single beep) </p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="../../da/d98/sketch_8ino_a907ace78eeae758c69822122d16a5598_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_a907ace78eeae758c69822122d16a5598_icgraph" alt=""/></div>
+<map name="ada/d98/sketch_8ino_a907ace78eeae758c69822122d16a5598_icgraph" id="ada/d98/sketch_8ino_a907ace78eeae758c69822122d16a5598_icgraph">
+<area shape="rect" title="Plays success beep pattern (higher pitch, single beep)" alt="" coords="288,5,388,32"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#ac14fcfce1e57d782584ccc183c008a2e" title="Processes card number and fetches patient info." alt="" coords="99,5,240,32"/>
+<area shape="poly" title=" " alt="" coords="272,21,240,21,240,16,272,16"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Main loop handles state machine and key input." alt="" coords="5,5,51,32"/>
+<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="ae786f8044734bf7283b0df88675335c5" name="ae786f8044734bf7283b0df88675335c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae786f8044734bf7283b0df88675335c5">&#9670;&#160;</a></span>connectToWiFi()</h2>
 
@@ -328,11 +434,11 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Connects to WiFi (real or simulated). </p>
-<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_ae786f8044734bf7283b0df88675335c5_cgraph.png" border="0" usemap="#ada/d98/sketch_8ino_ae786f8044734bf7283b0df88675335c5_cgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_ae786f8044734bf7283b0df88675335c5_cgraph" id="ada/d98/sketch_8ino_ae786f8044734bf7283b0df88675335c5_cgraph">
 <area shape="rect" title="Connects to WiFi (real or simulated)." alt="" coords="5,5,114,32"/>
@@ -340,11 +446,11 @@ Variables</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="114,16,146,16,146,21,114,21"/>
 </map>
 </div>
-<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_ae786f8044734bf7283b0df88675335c5_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_ae786f8044734bf7283b0df88675335c5_icgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_ae786f8044734bf7283b0df88675335c5_icgraph" id="ada/d98/sketch_8ino_ae786f8044734bf7283b0df88675335c5_icgraph">
 <area shape="rect" title="Connects to WiFi (real or simulated)." alt="" coords="107,31,215,57"/>
@@ -379,11 +485,11 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_a98442a31625045560a6fd3e84d4e4d5e_cgraph.png" border="0" usemap="#ada/d98/sketch_8ino_a98442a31625045560a6fd3e84d4e4d5e_cgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_a98442a31625045560a6fd3e84d4e4d5e_cgraph" id="ada/d98/sketch_8ino_a98442a31625045560a6fd3e84d4e4d5e_cgraph">
 <area shape="rect" title="Displays patient info on the LCD screen." alt="" coords="5,31,131,57"/>
@@ -393,11 +499,11 @@ Variables</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="132,51,164,56,163,62,131,57"/>
 </map>
 </div>
-<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_a98442a31625045560a6fd3e84d4e4d5e_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_a98442a31625045560a6fd3e84d4e4d5e_icgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_a98442a31625045560a6fd3e84d4e4d5e_icgraph" id="ada/d98/sketch_8ino_a98442a31625045560a6fd3e84d4e4d5e_icgraph">
 <area shape="rect" title="Displays patient info on the LCD screen." alt="" coords="288,5,413,32"/>
@@ -427,11 +533,11 @@ Variables</h2></td></tr>
 
 <p>Gets pressed key from keypad. </p>
 <dl class="section return"><dt>Returns</dt><dd>Pressed key character or 0 if none. </dd></dl>
-<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_a2da36c055d23bb1f20f20bfabbb40661_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_a2da36c055d23bb1f20f20bfabbb40661_icgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_a2da36c055d23bb1f20f20bfabbb40661_icgraph" id="ada/d98/sketch_8ino_a2da36c055d23bb1f20f20bfabbb40661_icgraph">
 <area shape="rect" title="Gets pressed key from keypad." alt="" coords="263,31,325,57"/>
@@ -468,11 +574,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../dd/db6/struct_patient_info.html" title="Structure to hold patient information.">PatientInfo</a> structure with patient details. </dd></dl>
-<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_ab249427f7b02b085c108ba7ff5bd8fa2_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_ab249427f7b02b085c108ba7ff5bd8fa2_icgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_ab249427f7b02b085c108ba7ff5bd8fa2_icgraph" id="ada/d98/sketch_8ino_ab249427f7b02b085c108ba7ff5bd8fa2_icgraph">
 <area shape="rect" title="Gets patient data from Firebase or local database." alt="" coords="288,5,396,32"/>
@@ -501,11 +607,11 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Handles numeric input from keypad. </p>
-<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_a423dcbfd8fa6cceb0dd8f3a0d9dbccc6_cgraph.png" border="0" usemap="#ada/d98/sketch_8ino_a423dcbfd8fa6cceb0dd8f3a0d9dbccc6_cgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_a423dcbfd8fa6cceb0dd8f3a0d9dbccc6_cgraph" id="ada/d98/sketch_8ino_a423dcbfd8fa6cceb0dd8f3a0d9dbccc6_cgraph">
 <area shape="rect" title="Handles numeric input from keypad." alt="" coords="5,31,122,57"/>
@@ -515,11 +621,11 @@ Variables</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="122,52,167,60,166,66,121,57"/>
 </map>
 </div>
-<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_a423dcbfd8fa6cceb0dd8f3a0d9dbccc6_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_a423dcbfd8fa6cceb0dd8f3a0d9dbccc6_icgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_a423dcbfd8fa6cceb0dd8f3a0d9dbccc6_icgraph" id="ada/d98/sketch_8ino_a423dcbfd8fa6cceb0dd8f3a0d9dbccc6_icgraph">
 <area shape="rect" title="Handles numeric input from keypad." alt="" coords="99,5,215,32"/>
@@ -553,11 +659,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_ae084e1bc8ccb35ea289ba0ca4972ea6d_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_ae084e1bc8ccb35ea289ba0ca4972ea6d_icgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_ae084e1bc8ccb35ea289ba0ca4972ea6d_icgraph" id="ada/d98/sketch_8ino_ae084e1bc8ccb35ea289ba0ca4972ea6d_icgraph">
 <area shape="rect" title=" " alt="" coords="461,132,500,159"/>
@@ -602,37 +708,41 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Main loop handles state machine and key input. </p>
-<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph.png" border="0" usemap="#ada/d98/sketch_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph" id="ada/d98/sketch_8ino_afe461d27b9c48d5921c00d521181f12f_cgraph">
-<area shape="rect" title="Main loop handles state machine and key input." alt="" coords="5,208,51,235"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#ae786f8044734bf7283b0df88675335c5" title="Connects to WiFi (real or simulated)." alt="" coords="296,309,405,336"/>
-<area shape="poly" title=" " alt="" coords="39,233,64,266,80,282,100,295,144,312,192,322,238,326,281,326,281,331,238,331,191,327,143,317,97,300,77,286,60,269,35,236"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#a2da36c055d23bb1f20f20bfabbb40661" title="Gets pressed key from keypad." alt="" coords="320,208,382,235"/>
-<area shape="poly" title=" " alt="" coords="51,219,304,219,304,224,51,224"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#a423dcbfd8fa6cceb0dd8f3a0d9dbccc6" title="Handles numeric input from keypad." alt="" coords="111,157,228,184"/>
-<area shape="poly" title=" " alt="" coords="50,211,115,187,116,192,52,216"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#ac14fcfce1e57d782584ccc183c008a2e" title="Processes card number and fetches patient info." alt="" coords="99,81,240,108"/>
-<area shape="poly" title=" " alt="" coords="38,206,97,143,133,115,136,119,100,147,42,209"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#ae4b79fd67844175694542864c20abd28" title="Resets system to input state and clears indicators." alt="" coords="107,259,232,285"/>
-<area shape="poly" title=" " alt="" coords="52,227,116,250,115,255,50,232"/>
+<area shape="rect" title="Main loop handles state machine and key input." alt="" coords="5,107,51,133"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#ae786f8044734bf7283b0df88675335c5" title="Connects to WiFi (real or simulated)." alt="" coords="115,157,224,184"/>
+<area shape="poly" title=" " alt="" coords="52,125,116,149,115,154,50,130"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#a2da36c055d23bb1f20f20bfabbb40661" title="Gets pressed key from keypad." alt="" coords="320,56,382,83"/>
+<area shape="poly" title=" " alt="" coords="50,108,98,92,208,75,303,68,304,73,209,80,99,97,52,113"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#a423dcbfd8fa6cceb0dd8f3a0d9dbccc6" title="Handles numeric input from keypad." alt="" coords="111,107,228,133"/>
+<area shape="poly" title=" " alt="" coords="51,117,96,117,96,123,51,123"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#ac14fcfce1e57d782584ccc183c008a2e" title="Processes card number and fetches patient info." alt="" coords="99,284,240,311"/>
+<area shape="poly" title=" " alt="" coords="42,132,150,270,146,273,38,136"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#ae4b79fd67844175694542864c20abd28" title="Resets system to input state and clears indicators." alt="" coords="107,5,232,32"/>
+<area shape="poly" title=" " alt="" coords="38,105,64,77,97,49,116,37,119,42,100,53,68,81,42,108"/>
 <area shape="rect" href="../../da/d98/sketch_8ino.html#ae084e1bc8ccb35ea289ba0ca4972ea6d" title=" " alt="" coords="493,157,532,184"/>
-<area shape="poly" title=" " alt="" coords="383,306,412,289,458,242,492,195,496,199,462,245,415,293,386,311"/>
-<area shape="poly" title=" " alt="" coords="228,168,477,168,477,173,228,173"/>
-<area shape="poly" title=" " alt="" coords="221,182,305,206,304,211,219,187"/>
-<area shape="poly" title=" " alt="" coords="234,106,479,161,477,166,233,111"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#a98442a31625045560a6fd3e84d4e4d5e" title="Displays patient info on the LCD screen." alt="" coords="288,5,413,32"/>
-<area shape="poly" title=" " alt="" coords="201,78,287,42,301,36,303,41,289,46,204,83"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#ab249427f7b02b085c108ba7ff5bd8fa2" title="Gets patient data from Firebase or local database." alt="" coords="296,56,405,83"/>
-<area shape="poly" title=" " alt="" coords="240,82,281,76,282,82,241,87"/>
-<area shape="poly" title=" " alt="" coords="395,30,415,42,441,65,464,92,498,142,494,145,460,95,437,69,412,46,393,35"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#a211f792f3c0783031102e8c8ccc1a861" title="Truncates string to fit LCD line." alt="" coords="461,5,564,32"/>
-<area shape="poly" title=" " alt="" coords="414,16,446,16,446,21,414,21"/>
-<area shape="poly" title=" " alt="" coords="232,272,319,267,367,258,412,244,453,221,486,193,490,197,456,225,414,249,368,264,320,272,232,277"/>
+<area shape="poly" title=" " alt="" coords="224,168,478,168,478,173,224,173"/>
+<area shape="poly" title=" " alt="" coords="228,124,414,149,479,161,478,167,413,155,227,129"/>
+<area shape="poly" title=" " alt="" coords="219,103,304,79,305,85,221,109"/>
+<area shape="poly" title=" " alt="" coords="193,309,236,332,293,353,323,360,354,362,384,357,412,346,431,332,447,315,473,276,491,234,502,198,508,200,496,236,478,278,451,319,434,336,415,350,385,362,354,367,323,365,291,358,234,337,191,314"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#aa2d5ad8f8daaed55a5b97fb55aa89170" title="Plays error beep pattern (lower pitch, double beep)" alt="" coords="312,208,389,235"/>
+<area shape="poly" title=" " alt="" coords="201,281,287,244,301,238,303,243,289,249,204,286"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#a907ace78eeae758c69822122d16a5598" title="Plays success beep pattern (higher pitch, single beep)" alt="" coords="300,259,401,285"/>
+<area shape="poly" title=" " alt="" coords="240,285,285,278,286,284,241,290"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#a98442a31625045560a6fd3e84d4e4d5e" title="Displays patient info on the LCD screen." alt="" coords="288,411,413,437"/>
+<area shape="poly" title=" " alt="" coords="188,309,232,347,289,390,308,401,305,405,287,394,229,351,184,313"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#ab249427f7b02b085c108ba7ff5bd8fa2" title="Gets patient data from Firebase or local database." alt="" coords="296,309,405,336"/>
+<area shape="poly" title=" " alt="" coords="241,305,282,310,281,316,240,310"/>
+<area shape="poly" title=" " alt="" coords="387,408,411,390,446,343,473,290,491,240,503,198,508,200,496,241,477,292,451,346,415,394,390,412"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#a211f792f3c0783031102e8c8ccc1a861" title="Truncates string to fit LCD line." alt="" coords="461,411,564,437"/>
+<area shape="poly" title=" " alt="" coords="414,421,446,421,446,427,414,427"/>
+<area shape="poly" title=" " alt="" coords="232,10,275,9,322,13,370,23,415,42,443,63,467,89,501,142,496,145,463,93,440,67,412,46,368,28,321,18,275,14,233,15"/>
 </map>
 </div>
 
@@ -654,30 +764,34 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Processes card number and fetches patient info. </p>
-<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-13" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_ac14fcfce1e57d782584ccc183c008a2e_cgraph.png" border="0" usemap="#ada/d98/sketch_8ino_ac14fcfce1e57d782584ccc183c008a2e_cgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_ac14fcfce1e57d782584ccc183c008a2e_cgraph" id="ada/d98/sketch_8ino_ac14fcfce1e57d782584ccc183c008a2e_cgraph">
-<area shape="rect" title="Processes card number and fetches patient info." alt="" coords="5,56,147,83"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#a98442a31625045560a6fd3e84d4e4d5e" title="Displays patient info on the LCD screen." alt="" coords="195,56,320,83"/>
-<area shape="poly" title=" " alt="" coords="147,67,179,67,179,72,147,72"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#ae084e1bc8ccb35ea289ba0ca4972ea6d" title=" " alt="" coords="400,5,438,32"/>
-<area shape="poly" title=" " alt="" coords="136,53,194,41,298,27,385,19,385,24,299,33,195,47,137,58"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#ab249427f7b02b085c108ba7ff5bd8fa2" title="Gets patient data from Firebase or local database." alt="" coords="203,107,312,133"/>
-<area shape="poly" title=" " alt="" coords="127,81,193,99,192,105,126,86"/>
-<area shape="poly" title=" " alt="" coords="302,53,384,27,386,32,303,58"/>
-<area shape="rect" href="../../da/d98/sketch_8ino.html#a211f792f3c0783031102e8c8ccc1a861" title="Truncates string to fit LCD line." alt="" coords="368,56,470,83"/>
-<area shape="poly" title=" " alt="" coords="321,67,352,67,352,72,321,72"/>
+<area shape="rect" title="Processes card number and fetches patient info." alt="" coords="5,107,147,133"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#aa2d5ad8f8daaed55a5b97fb55aa89170" title="Plays error beep pattern (lower pitch, double beep)" alt="" coords="219,5,296,32"/>
+<area shape="poly" title=" " alt="" coords="95,104,139,74,193,42,204,36,206,41,196,46,142,78,98,108"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#a907ace78eeae758c69822122d16a5598" title="Plays success beep pattern (higher pitch, single beep)" alt="" coords="207,56,308,83"/>
+<area shape="poly" title=" " alt="" coords="126,103,192,85,193,90,127,109"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#a98442a31625045560a6fd3e84d4e4d5e" title="Displays patient info on the LCD screen." alt="" coords="195,157,320,184"/>
+<area shape="poly" title=" " alt="" coords="127,131,193,150,192,155,126,137"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#ae084e1bc8ccb35ea289ba0ca4972ea6d" title=" " alt="" coords="400,107,438,133"/>
+<area shape="poly" title=" " alt="" coords="147,117,384,117,384,123,147,123"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#ab249427f7b02b085c108ba7ff5bd8fa2" title="Gets patient data from Firebase or local database." alt="" coords="203,208,312,235"/>
+<area shape="poly" title=" " alt="" coords="98,132,142,162,196,194,206,199,204,204,193,198,139,166,95,136"/>
+<area shape="poly" title=" " alt="" coords="302,154,384,128,386,133,303,159"/>
+<area shape="rect" href="../../da/d98/sketch_8ino.html#a211f792f3c0783031102e8c8ccc1a861" title="Truncates string to fit LCD line." alt="" coords="368,157,470,184"/>
+<area shape="poly" title=" " alt="" coords="321,168,352,168,352,173,321,173"/>
 </map>
 </div>
-<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-14" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_ac14fcfce1e57d782584ccc183c008a2e_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_ac14fcfce1e57d782584ccc183c008a2e_icgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_ac14fcfce1e57d782584ccc183c008a2e_icgraph" id="ada/d98/sketch_8ino_ac14fcfce1e57d782584ccc183c008a2e_icgraph">
 <area shape="rect" title="Processes card number and fetches patient info." alt="" coords="99,5,240,32"/>
@@ -704,11 +818,11 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Resets system to input state and clears indicators. </p>
-<div id="dynsection-13" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-15" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_ae4b79fd67844175694542864c20abd28_cgraph.png" border="0" usemap="#ada/d98/sketch_8ino_ae4b79fd67844175694542864c20abd28_cgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_ae4b79fd67844175694542864c20abd28_cgraph" id="ada/d98/sketch_8ino_ae4b79fd67844175694542864c20abd28_cgraph">
 <area shape="rect" title="Resets system to input state and clears indicators." alt="" coords="5,5,131,32"/>
@@ -716,11 +830,11 @@ Variables</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="131,16,163,16,163,21,131,21"/>
 </map>
 </div>
-<div id="dynsection-14" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-16" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_ae4b79fd67844175694542864c20abd28_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_ae4b79fd67844175694542864c20abd28_icgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_ae4b79fd67844175694542864c20abd28_icgraph" id="ada/d98/sketch_8ino_ae4b79fd67844175694542864c20abd28_icgraph">
 <area shape="rect" title="Resets system to input state and clears indicators." alt="" coords="107,31,232,57"/>
@@ -749,11 +863,11 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Setup function initializes LCD, WiFi, Firebase and sets the system to input mode. </p>
-<div id="dynsection-15" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-17" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_a4fc01d736fe50cf5b977f755b675f11d_cgraph.png" border="0" usemap="#ada/d98/sketch_8ino_a4fc01d736fe50cf5b977f755b675f11d_cgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_a4fc01d736fe50cf5b977f755b675f11d_cgraph" id="ada/d98/sketch_8ino_a4fc01d736fe50cf5b977f755b675f11d_cgraph">
 <area shape="rect" title="Setup function initializes LCD, WiFi, Firebase and sets the system to input mode." alt="" coords="5,56,59,83"/>
@@ -798,11 +912,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Truncated string. </dd></dl>
-<div id="dynsection-16" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-18" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../da/d98/sketch_8ino_a211f792f3c0783031102e8c8ccc1a861_icgraph.png" border="0" usemap="#ada/d98/sketch_8ino_a211f792f3c0783031102e8c8ccc1a861_icgraph" alt=""/></div>
 <map name="ada/d98/sketch_8ino_a211f792f3c0783031102e8c8ccc1a861_icgraph" id="ada/d98/sketch_8ino_a211f792f3c0783031102e8c8ccc1a861_icgraph">
 <area shape="rect" title="Truncates string to fit LCD line." alt="" coords="461,5,564,32"/>
@@ -818,6 +932,20 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a988a608b186de34e793324aee3ec73ee" name="a988a608b186de34e793324aee3ec73ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a988a608b186de34e793324aee3ec73ee">&#9670;&#160;</a></span>buzzerPin</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int buzzerPin = 25</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa9fece7b062124080e4b2976f9a8b675" name="aa9fece7b062124080e4b2976f9a8b675"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa9fece7b062124080e4b2976f9a8b675">&#9670;&#160;</a></span>colPins</h2>
 

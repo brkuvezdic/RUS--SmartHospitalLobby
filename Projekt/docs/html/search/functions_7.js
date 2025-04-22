@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setup_0',['setup',['../da/d98/sketch_8ino.html#a4fc01d736fe50cf5b977f755b675f11d',1,'sketch.ino']]]
+  ['resettoinputmode_0',['resetToInputMode',['../da/d98/sketch_8ino.html#ae4b79fd67844175694542864c20abd28',1,'sketch.ino']]]
 ];
